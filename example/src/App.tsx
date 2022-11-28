@@ -10,10 +10,7 @@ export default function App() {
   const devices = useCameraDevices();
   const device = devices.back;
 
-  const [frameProcessor, barcodes] = useScanBarcodes(
-    [BarcodeFormat.ALL_FORMATS],
-    { checkInverted: true }
-  );
+  useScanBarcodes([BarcodeFormat.ALL_FORMATS], { checkInverted: true });
 
   React.useEffect(() => {
     (async () => {
@@ -22,9 +19,9 @@ export default function App() {
     })();
   }, []);
 
-  React.useEffect(() => {
-    console.log(barcodes);
-  }, [barcodes]);
+  // React.useEffect(() => {
+  //   console.log(barcodes);
+  // }, [barcodes]);
 
   return (
     device != null &&
@@ -34,14 +31,14 @@ export default function App() {
           style={StyleSheet.absoluteFill}
           device={device}
           isActive={true}
-          frameProcessor={frameProcessor}
+          // frameProcessor={frameProcessor}
           frameProcessorFps={5}
         />
-        {barcodes.map((barcode, idx) => (
+        {/* {barcodes.map((barcode, idx) => (
           <Text key={idx} style={styles.barcodeTextURL}>
             {barcode.displayValue}
           </Text>
-        ))}
+        ))} */}
       </>
     )
   );
